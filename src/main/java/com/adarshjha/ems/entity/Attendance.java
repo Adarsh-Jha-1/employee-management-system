@@ -7,23 +7,31 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+//id (Long)
+//employee (Many-to-One, Employee)
+//checkInTime (LocalTime)
+//checkOutTime (LocalTime)
+//date (LocalDate)
+//location (String)
+
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Attendance {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@ManyToOne
+	private Employee employee;
+	private LocalTime checkInTime;
+	private LocalTime checkOutTime;
+	private LocalDate date;
+	private String location;
+	
 
-    private LocalDate date;            // Date of attendance
-    private LocalTime checkInTime;     // Check-in time for the employee
-    private LocalTime checkOutTime;    // Check-out time for the employee
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;         // Employee associated with this attendance record
 }

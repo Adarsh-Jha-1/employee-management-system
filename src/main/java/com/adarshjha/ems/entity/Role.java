@@ -1,13 +1,9 @@
 package com.adarshjha.ems.entity;
 
-import java.util.List;
-
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,13 +11,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Role {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String roleName;
+	private String description;
 
-	private String name;
-
-	@OneToMany(mappedBy = "role")
-	private List<Employee> employees;
 }

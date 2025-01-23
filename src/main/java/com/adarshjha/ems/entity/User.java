@@ -1,32 +1,36 @@
 package com.adarshjha.ems.entity;
 
-import java.util.List;
-import jakarta.persistence.JoinColumn;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Getter @Setter
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//username (String)
+//password (String, encrypted)
+//employee (One-to-One, Employee)
+//email (String)
+//isEnabled (Boolean)
+//lastLogin (LocalDateTime)
 
-    private String username; 
-    private String password; 
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "user_roles", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> roles;
+@Entity
+@Getter
+@Setter
+public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String username;
+	private String password;
+	@OneToOne
+	private Employee employee;
+	private String email;
+	private Boolean isEnabled;
+	private LocalDateTime lastLogin;
+
 }
