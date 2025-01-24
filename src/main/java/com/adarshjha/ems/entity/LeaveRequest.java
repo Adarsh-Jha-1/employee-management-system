@@ -2,6 +2,8 @@ package com.adarshjha.ems.entity;
 
 import java.time.LocalDate;
 
+import com.adarshjha.ems.enums.LeaveRequestStatus;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +31,7 @@ public class LeaveRequest {
 	private Long id;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private String status;
+	private LeaveRequestStatus status;
 	@ManyToOne
 	private Employee employee;
 	private String reason;
